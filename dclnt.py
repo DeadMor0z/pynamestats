@@ -104,7 +104,7 @@ if __name__ == '__main__':
 
     for project in projects:
         path = os.path.join('.', project)
-        words += get_top_verbs_in_path(path)
+        words += get_top_function_verbs(path)
 
     top_size = 200
     print('total %s words, %s unique' % (len(words), len(set(words))))
