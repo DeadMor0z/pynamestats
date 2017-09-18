@@ -10,7 +10,12 @@ from pynamestats import get_top_verbs_in_path
 
 words = []
 projects = [
-    'yamdb',
+    'django',
+    'flask',
+    'pyramid',
+    'reddit',
+    'requests',
+    'sqlalchemy',
 ]
 
 for project in projects:
