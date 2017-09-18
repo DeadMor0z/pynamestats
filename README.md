@@ -1,11 +1,11 @@
 # pynamestats
 Functions for getting naming statistics in python projects at given path
 
-**get_all_names(**_path_**)** - get all names in python files in a path
-**get_top_names(**_path_**,** _top_size=10_**)** - get top names in python files in a path
-**get_all_function_names(**_path_**)** - get all function names in python files in a path
-**get_top_function_names(**_path_**,** _top_size=10_**)** - get top function names in python files in a path
-**get_top_function_verbs(**_path_**,** _top_size=10_**)** - get top verbs in function names in python files in a path
+* **get_all_names(**_path_**)** - get all names in python files in a path
+* **get_top_names(**_path_**,** _top_size=10_**)** - get top names in python files in a path
+* **get_all_function_names(**_path_**)** - get all function names in python files in a path
+* **get_top_function_names(**_path_**,** _top_size=10_**)** - get top function names in python files in a path
+* **get_top_function_verbs(**_path_**,** _top_size=10_**)** - get top verbs in function names in python files in a path
 
 ### Code example
 
