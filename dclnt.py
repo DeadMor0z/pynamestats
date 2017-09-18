@@ -50,18 +50,43 @@ def get_trees(path):
     print('total %s trees generated' % len(trees))
     return trees
 
-def get_all_function_names(tree):
-    """return list of all function name list in a tree"""
-    return [node.name.lower() for node in ast.walk(tree) if isinstance(node, ast.FunctionDef)]
-
 def get_verbs_from_function_name(function_name):
     """return list of all verbs (base form) in function name"""
     return [word for word in function_name.split('_') if is_verb(word)]
 
-def get_top_verbs_in_path(path, top_size=10):
-    """return most common verbs in function names in python files in specified path"""
+def get_names(tree):
+    """return list of all names in a tree"""
+    return [node.id for node in ast.walk(tree) if isinstance(node, ast.Name)]
+
+def get_function_names(tree):
+    """return list of all function names in a tree"""
+    return [node.name.lower() for node in ast.walk(tree) if isinstance(node, ast.FunctionDef)]
+
+def get_all_names(path):
+    """return list of all names in python files in specified path"""
     trees = get_trees(path)
-    function_names = [f for f in flat([get_all_function_names(t) for t in trees]) if not is_special(f)]
+    names = [f for f in flat([get_names(t) for t in trees]) if not is_special(f)]
+    return names
+
+def get_top_names(path, top_size=10):
+    """return most common names in python files in specified path"""
+    names = get_all_names(path)
+    return collections.Counter(names).most_common(top_size)
+
+def get_all_function_names(path):
+    """return list of all function names inpython files in specified path"""
+    trees = get_trees(path)
+    function_names = [f for f in flat([get_function_names(t) for t in trees]) if not is_special(f)]
+    return function_names
+
+def get_top_function_names(path, top_size=10):
+    """return most common function names in python files in specified path"""
+    function_names = get_all_function_names(path)
+    return collections.Counter(function_names).most_common(top_size)
+
+def get_top_function_verbs(path, top_size=10):
+    """return most common verbs in function names in python files in specified path"""
+    function_names = get_all_function_names(path)
     print('functions extracted')
     verbs = flat([get_verbs_from_function_name(function_name) for function_name in function_names])
     return collections.Counter(verbs).most_common(top_size)
