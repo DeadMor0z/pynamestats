@@ -42,12 +42,9 @@ def process_files(dirname, files):
 def get_trees(path):
     """generate trees from files in given path"""
     trees = []
-    print('generating trees')
     for dirname, dirs, files in os.walk(path, topdown=True):
         dir_trees = process_files(dirname, files)
         trees += dir_trees
-
-    print('total %s trees generated' % len(trees))
     return trees
 
 def get_verbs_from_function_name(function_name):
@@ -87,7 +84,6 @@ def get_top_function_names(path, top_size=10):
 def get_top_function_verbs(path, top_size=10):
     """return most common verbs in function names in python files in specified path"""
     function_names = get_all_function_names(path)
-    print('functions extracted')
     verbs = flat([get_verbs_from_function_name(function_name) for function_name in function_names])
     return collections.Counter(verbs).most_common(top_size)
 
